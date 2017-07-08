@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Amazon-like storefront",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/margaretchoi/bamazon.git"
+  },
+  "author": "Margaret Choi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/margaretchoi/bamazon/issues"
+  },
+  "homepage": "https://github.com/margaretchoi/bamazon#readme",
+  "dependencies": {
+    "easy-table": "^1.1.0",
+    "inquirer": "^3.1.1",
+    "mysql": "^2.13.0"
+  }
+}
