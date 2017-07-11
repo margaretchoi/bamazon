@@ -118,7 +118,6 @@ function addInventory() {
 			[answer.productID],
 			function (error, results) {
 				if (error) throw error;
-
 				
 				let newQuantity = parseInt(results[0].stock_quantity) + parseInt(answer.productQuantity);
 				let name = results[0].product_name;

@@ -30,7 +30,6 @@ function start() {
 		    },
 	    ])
 	    .then(function(answer) {
-			console.log(answer);
 			if (answer.choice === "View Product Sales by Department") {
 				viewDepartment();
 			} else if (answer.choice === "Create New Department"){
@@ -42,31 +41,23 @@ function start() {
 	    });
 }
 
-
 function viewDepartment() {
 	connection.query(
-	  'SELECT departments.department_id, departments.department_name, departments.overhead_costs, products.product_sales FROM products INNER JOIN departments ON products.department_name=departments.department_name GROUP BY item_id, department_id', 
+	  'SELECT departments.department_id AS ID, departments.department_name AS Department, departments.overhead_costs AS OverheadCosts, SUM(products.product_sales) AS ProductSales FROM departments INNER JOIN products ON departments.department_name = products.department_name GROUP BY department_id',
 	  function (error, results) {
 	    if (error) throw error;
 	    console.log('Viewing departments...');
-
-	    let totalSales = parseFloat(results[0].product_sales - results[0].overhead_costs);
-
-	    // for (let i = 0; i <= results.length; i++) {
-	    // 	let totalSales = parseFloat(results[i].product_sales - results[i].overhead_costs);
-	    // }
-
-	    console.log(results);
 
 		let data = results;		
 		let t = new Table;
 		 
 		data.forEach(function(product) {
-		  t.cell('Department ID', product.department_id)
-		  t.cell('Department Name', product.department_name)
-		  t.cell('Overhead Costs', product.overhead_costs.toFixed(2))
-		  t.cell('Product Sales', product.product_sales)
-		  t.cell('Total Profit', totalSales)
+		  let totalSales = (product.ProductSales - product.OverheadCosts)
+		  t.cell('Department ID', product.ID)
+		  t.cell('Department Name', product.Department)
+		  t.cell('Overhead Costs', product.OverheadCosts.toFixed(2))
+		  t.cell('Product Sales', product.ProductSales)
+		  t.cell('Total Profit', totalSales.toFixed(2))
 		  t.newRow()
 		})
 		 
@@ -77,5 +68,40 @@ function viewDepartment() {
 }
 
 function createDepartment() {
+	inquirer
+		.prompt([
+		    {
+				name: "name",
+				type: "input",
+				message: "Enter a department name.",
+		    },
+		    {
+				name: "overhead",
+				type: "input",
+				message: "Enter the overhead costs for this department.",
+				validate: function validateAge(cost)
+				{
+				   var reg = /^\d+$/;
+				   return reg.test(cost) || "Overhead costs should be a number!";
+				}
+		    },
+		])
+		.then(function(answer) {
+
+			connection.query(				
+			'INSERT INTO departments SET ?',
+	        {
+	          department_name: answer.name,
+	          overhead_costs: parseInt(answer.overhead)
+	        },
+			function (error, results) {
+				if (error) throw error;
+				console.log('Department added!');
+				}
+			);
+
+			
+
+	});
 
 }
