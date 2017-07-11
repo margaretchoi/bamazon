@@ -34,8 +34,9 @@ function start() {
 		  t.cell('ID', product.item_id)
 		  t.cell('Product Name', product.product_name)
 		  t.cell('Department', product.department_name)
-		  t.cell('Price', product.price, Table.number(2))
+		  t.cell('Price', product.price.toFixed(2))
 		  t.cell('Stock', product.stock_quantity)
+		  t.cell('Total Sales', product.product_sales.toFixed(2))
 		  t.newRow()
 		})
 		 
@@ -101,7 +102,7 @@ function reduceStock(answer) {
 
 			let newQuantity = results[0].stock_quantity - answer.productQuantity;
 			let name = results[0].product_name;
-			let price = results[0].price * answer.productQuantity;
+			let price = results[0].price.toFixed(2) * answer.productQuantity;
 
 			connection.query('UPDATE products SET stock_quantity =' + newQuantity + ' WHERE item_id = ?',
 				[answer.productID],
@@ -109,14 +110,44 @@ function reduceStock(answer) {
 					if (error) throw error;
 
 					console.log( name.toUpperCase() + ' has been successfully added to your cart!');
-					console.log('Total: $' + price);
+					console.log('Total: $' + price.toFixed(2));
 				}
 			)
 
+			calculateSales(answer, price);
 		}
 	);
 
 }
 
+function calculateSales(answer, price) {
+	console.log('Calculating sales ...');
+
+	connection.query('SELECT * FROM products WHERE item_id = ?', 
+		[answer.productID],
+		function (error, results) {	
+			if (error) throw error;
+			console.log('Answer product sales: ', results[0].product_sales)
+			let newPrice = parseFloat(results[0].product_sales) + parseFloat(price.toFixed(2));
+			console.log('New price to store: ', newPrice.toFixed(2));
+
+			updateSales(answer, newPrice);
+		}
+	);
+
+}
+
+
+function updateSales(answer, newPrice) {
+	console.log('Updating sales column ...');
+	console.log('Newest price: ', newPrice.toFixed(2));
+	connection.query(
+		'UPDATE products SET product_sales=? WHERE item_id=?', 
+		[newPrice, answer.productID],
+		function (error, results) {	
+			if (error) throw error;
+		}
+	);
+}
 
 
