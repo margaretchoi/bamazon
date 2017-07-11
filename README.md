@@ -90,7 +90,11 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
    
    * Create New Department
 
+![Supervisor menu](/images/supervisor_1.png)
+
 * When a supervisor selects `View Product Sales by Department`, the app displays a summarized table in their terminal/bash window.
+
+![Supervisor sales](/images/supervisor_2.png)
 
 * When a supervisor selects 'Create New Department' they receive two messages:
 
@@ -98,3 +102,5 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
    * The second message asks the overhead costs of this department
 
 * If the new department is successfully added, the app will log 'Department added!'
+
+![Supervisor new department](/images/supervisor_3.png)
