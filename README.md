@@ -4,9 +4,9 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
 
 Run NPM install to download the necessary packages.
 
-## Customer View
+## Customer View 
 
-*I've created a MySQL Database called `bamazon` with a  table called `products`.
+*schema.sql creates a MySQL Database `bamazon_db` with a table `products`.
 
 *The products table has each of the following columns:
 
@@ -36,7 +36,7 @@ Run NPM install to download the necessary packages.
 
 - - -
 
-### Manager View
+## Manager View
 
 * Running this application will:
 
@@ -50,6 +50,9 @@ Run NPM install to download the necessary packages.
     
     * Add New Product
 
+   ![Image of Yaktocat]
+   (https://octodex.github.com/images/yaktocat.png)
+
   * If a manager selects `View Products for Sale`, the app will list every available item: the item IDs, names, prices, and quantities.
 
   * If a manager selects `View Low Inventory`, the app will list all items with an inventory count lower than five.
@@ -59,3 +62,33 @@ Run NPM install to download the necessary packages.
   * If a manager selects `Add New Product`, the app will allow the manager to add a completely new product to the store.
 
 - - -
+
+
+## Supervisor View
+
+*schema.sql creates a table `departments` in the MySQL Database `bamazon_db`.
+
+*The products table has each of the following columns:
+
+   * department_id
+   * department_name
+   * overhead_costs 
+
+* The products table includes a product_sales column that is updated with each individual products total revenue from each sale.
+
+* When a customer purchases anything from the store, the price of the product multiplied by the quantity purchased is added to the product's product_sales column.
+
+* The 'Supervisor View' will list a set of menu options:
+
+   * View Product Sales by Department
+   
+   * Create New Department
+
+* When a supervisor selects `View Product Sales by Department`, the app displays a summarized table in their terminal/bash window.
+
+* When a supervisor selects 'Create New Department' they receive two messages:
+
+   * The first message asks the name of the department to add
+   * The second message asks the overhead costs of this department
+
+* If the new department is successfully added, the app will log 'Department added!'
