@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS bamazon_db;
+ DROP DATABASE IF EXISTS bamazon_db;
 
 CREATE DATABASE bamazon_db;
 
@@ -11,11 +11,10 @@ CREATE TABLE products (
     price float(10, 2) not null,
     stock_quantity integer(10) not null,
     product_sales float(10, 2) not null,
-    total_profit float(10, 2) not null,
     PRIMARY KEY (item_id)
 );
 
-INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales, total_profit)
+INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)
 VALUES ('squeaky toy', 'dogs', 7.99, 4, 0, 0), 
 ('bowl', 'dogs', 12.99, 50, 0, 0),
 ('leash', 'dogs', 7, 20, 0, 0),
