@@ -31,7 +31,7 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
 
    * If not, the app will log 'Sorry, this item is not available', and then prevent the order from going through.
 
-![Customer stock](/images/cust_3.png)
+![Customer stock](/images/cust_4.png)
 
 *If the store _does_ have enough of the product, we'll fulfill the customer's order.
    * This means updating the SQL database to reflect the remaining quantity.
@@ -51,13 +51,23 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
     * Add to Inventory
     * Add New Product
 
+![Manager menu](/images/manager_1.png)
+
   * If a manager selects `View Products for Sale`, the app will list every available item: the item IDs, names, prices, and quantities.
+
+![Manager view products](/images/manager_2.png)
 
   * If a manager selects `View Low Inventory`, the app will list all items with an inventory count lower than five.
 
+![Manager view inventory](/images/manager_3.png)
+
   * If a manager selects `Add to Inventory`, the app will display a prompt that will let the manager "add more" of any item currently in the store.
 
+![Manager add inventory](/images/manager_4.png)
+
   * If a manager selects `Add New Product`, the app will allow the manager to add a completely new product to the store.
+
+![Manager add product](/images/manager_5.png)
 
 - - -
 

@@ -29,8 +29,6 @@ exports.managerView = function() {
 			    },
 		    ])
 		    .then(function(answer) {
-				console.log(answer);
-
 				if (answer.choice === "View Products for Sale") {
 					viewProduct();
 				} else if (answer.choice === "View Low Inventory"){
@@ -51,10 +49,8 @@ exports.managerView = function() {
 		connection.query('SELECT * FROM products', 
 		  function (error, results) {
 		    if (error) throw error;
-		    console.log('Showing products...');
 
 			let data = results;
-			 
 			let t = new Table
 			 
 			data.forEach(function(product) {
@@ -144,7 +140,6 @@ exports.managerView = function() {
 	}
 
 	function addProduct() {
-		console.log('Adding a new product ...')
 		inquirer
 		    .prompt([
 			    {
@@ -169,7 +164,6 @@ exports.managerView = function() {
 			    }
 		    ])
 		    .then(function(answer) {
-				console.log(answer);
 
 				connection.query(
 			        "INSERT INTO products SET ?",
