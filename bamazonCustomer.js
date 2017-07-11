@@ -21,15 +21,11 @@ exports.customerView = function() {
 
 	// Displays the available items from the products table
 	function start() {
-		console.log('Starting ...');
-
 		connection.query('SELECT * FROM products', 
 		  function (error, results) {
 		    if (error) throw error;
-		    console.log('Selecting...');
 
 			let data = results;
-			 
 			let t = new Table
 			 
 			data.forEach(function(product) {
@@ -52,8 +48,6 @@ exports.customerView = function() {
 
 	// Prompts the user to select an item and quantity to buy
 	function buyProduct(results) {
-		console.log('Buying ...');
-
 		inquirer
 		    .prompt([
 			    {
@@ -75,8 +69,6 @@ exports.customerView = function() {
 
 	// Check the stock of the product
 	function checkStock(answer) {
-
-		console.log('Checking ...');
 
 		connection.query('SELECT * FROM products WHERE item_id = ?', 
 			[answer.productID],
@@ -123,16 +115,12 @@ exports.customerView = function() {
 	}
 
 	function calculateSales(answer, price) {
-		console.log('Calculating sales ...');
 
 		connection.query('SELECT * FROM products WHERE item_id = ?', 
 			[answer.productID],
 			function (error, results) {	
 				if (error) throw error;
-				console.log('Answer product sales: ', results[0].product_sales)
 				let newPrice = parseFloat(results[0].product_sales) + parseFloat(price.toFixed(2));
-				console.log('New price to store: ', newPrice.toFixed(2));
-
 				updateSales(answer, newPrice);
 			}
 		);
@@ -141,8 +129,6 @@ exports.customerView = function() {
 
 
 	function updateSales(answer, newPrice) {
-		console.log('Updating sales column ...');
-		console.log('Newest price: ', newPrice.toFixed(2));
 		connection.query(
 			'UPDATE products SET product_sales=? WHERE item_id=?', 
 			[newPrice, answer.productID],

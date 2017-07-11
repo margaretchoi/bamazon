@@ -8,8 +8,6 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
 
 ## Customer View 
 
-*Schema.sql creates a MySQL Database `bamazon_db` with a table `products`.
-
 *The products table has each of the following columns:
 
    * item_id (unique id for each product)
@@ -18,39 +16,40 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
    * price (cost to customer)
    * stock_quantity (how much of the product is available in stores)
 
-*Run node `bamazonCustomer.js` 
+![Products table](/images/cust_1.png)
 
-*Running this application will first display all of the items available for sale. Then it will prompt customers to buy a product. 
+*The customer view will first display all of the items available for sale. Then it will prompt customers to buy a product. 
 
 *Customers receive two messages:
 
    * The first message asks the ID of the product they'd like to buy
    * The second message asks how many units of the product they'd like to buy
 
+![Customer prompts](/images/cust_2.png)
+
 *After customers submit an order, the application will check if the store has enough of the product to meet the order. 
 
    * If not, the app will log 'Sorry, this item is not available', and then prevent the order from going through.
 
+![Customer stock](/images/cust_3.png)
+
 *If the store _does_ have enough of the product, we'll fulfill the customer's order.
    * This means updating the SQL database to reflect the remaining quantity.
    * Once the update goes through, the customer will see the total cost of their purchase. 
+
+![Customer cost](/images/cust_3.png)
 
 
 - - -
 
 ## Manager View
 
-* Running this application will:
-
-  * List a set of menu options:
+* The manager view will first list a set of menu options:
 
     * View Products for Sale
     * View Low Inventory   
     * Add to Inventory
     * Add New Product
-
-   ![Image of Yaktocat]
-   (https://octodex.github.com/images/yaktocat.png)
 
   * If a manager selects `View Products for Sale`, the app will list every available item: the item IDs, names, prices, and quantities.
 
@@ -64,8 +63,6 @@ Bamazon is a Amazon-like storefront. The app will take in orders from customers 
 
 
 ## Supervisor View
-
-*Schema.sql creates a table `departments` in the MySQL Database `bamazon_db`.
 
 *The products table has each of the following columns:
 
