@@ -2,11 +2,13 @@
 
 Bamazon is a Amazon-like storefront. The app will take in orders from customers and deplete stock from the store's inventory. It also tracks product sales across each department and then provides a summary of the highest-grossing departments in the store.
 
-Run NPM install to download the necessary packages.
+* Run NPM install to download the necessary packages.
+* Run bamazon.js for a list of options: Customer View, Manager View, or Supervisor View
+
 
 ## Customer View 
 
-*schema.sql creates a MySQL Database `bamazon_db` with a table `products`.
+*Schema.sql creates a MySQL Database `bamazon_db` with a table `products`.
 
 *The products table has each of the following columns:
 
@@ -43,11 +45,8 @@ Run NPM install to download the necessary packages.
   * List a set of menu options:
 
     * View Products for Sale
-    
-    * View Low Inventory
-    
+    * View Low Inventory   
     * Add to Inventory
-    
     * Add New Product
 
    ![Image of Yaktocat]
@@ -66,7 +65,7 @@ Run NPM install to download the necessary packages.
 
 ## Supervisor View
 
-*schema.sql creates a table `departments` in the MySQL Database `bamazon_db`.
+*Schema.sql creates a table `departments` in the MySQL Database `bamazon_db`.
 
 *The products table has each of the following columns:
 
